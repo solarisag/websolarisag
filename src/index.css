@@ -1,0 +1,407 @@
+/* ========================================================================
+   SolarISAG — Design system 2026
+   Light theme · Flama (corporate) + Instrument Serif (editorial italic accent)
+   ======================================================================== */
+
+/* Instrument Serif removed — typography is Flama only */
+
+@font-face {
+  font-family: 'Flama';
+  src: url('/fonts/Flama Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Flama';
+  src: url('/fonts/Flama Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Flama';
+  src: url('/fonts/Flama Bold Italic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme — pure white, clean, technical */
+  --color-bg: #FFFFFF;
+  --color-surface: #F5F5F5;
+  --color-surface-2: #EBEBEB;
+  --color-ink: #0A0A0A;
+  --color-ink-soft: #2A2A2A;
+  --color-muted: #6B6B6B;
+  --color-line: #E5E5E5;
+  --color-primary: #275360;     /* brand petróleo */
+  --color-accent: #FFCD46;      /* solar yellow */
+  --color-accent-deep: #E8B520;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #FFFFFF;
+}
+
+body {
+  background-color: #FFFFFF;
+  color: var(--color-ink);
+  font-family: 'Flama', system-ui, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Subtle warm grain — gives the entire surface a tactile, paper-like quality */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: multiply;
+}
+
+/* Bold italic accent — Flama Bold Italic for emphasis words within titles */
+.serif-italic,
+.title em,
+.title i {
+  font-family: 'Flama', system-ui, sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: inherit;
+}
+
+/* Hero headline: italic accent words in solar yellow */
+#hero .title em,
+#hero .title i {
+  color: var(--color-accent);
+}
+
+/* Explicit utility class for Flama Bold Italic outside of .title context */
+.flama-bold-italic {
+  font-family: 'Flama', system-ui, sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Title baseline — Flama, tight tracking, calm weight */
+.title {
+  font-family: 'Flama', system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.04;
+}
+
+/* Mono-ish label */
+.label-tag {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-ink);
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
+
+/* Form inputs — minimal, underlined */
+.input-base {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-line);
+  color: var(--color-ink);
+  padding: 0.85rem 0;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+.input-base::placeholder {
+  color: #999;
+}
+.input-base:focus {
+  border-bottom-color: var(--color-ink);
+}
+.input-base:focus-visible {
+  outline: none;
+}
+
+/* Magnetic / lifted button base */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+.btn-pill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, transparent 70%);
+}
+.btn-pill:hover::after {
+  opacity: 1;
+}
+.btn-pill-dark {
+  background: var(--color-ink);
+  color: #fff;
+}
+.btn-pill-dark:hover {
+  background: var(--color-primary);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 40px -10px rgba(39, 83, 96, 0.35);
+}
+.btn-pill-dark:active {
+  transform: translateY(0) scale(0.98);
+}
+.btn-pill-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn-pill-primary:hover {
+  background: #1e4050;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 40px -10px rgba(39, 83, 96, 0.45);
+}
+.btn-pill-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-pill-accent {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+.btn-pill-accent:hover {
+  background: var(--color-accent-deep);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 40px -10px rgba(255, 205, 70, 0.55);
+}
+.btn-pill-accent:active {
+  transform: translateY(0) scale(0.98);
+}
+.btn-pill-ghost {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  color: var(--color-ink);
+  border: 1px solid var(--color-line);
+}
+.btn-pill-ghost:hover {
+  background: #fff;
+  border-color: var(--color-ink);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px -6px rgba(0,0,0,0.1);
+}
+
+/* Continuous marquee */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Hairline divider */
+.hairline {
+  height: 1px;
+  background: var(--color-line);
+}
+
+/* Hover lift card */
+.card-lift {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px -20px rgba(10, 10, 10, 0.12);
+}
+
+/* Disable tap highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Slider (range input) — for the calculator */
+input[type='range'].solar-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: var(--color-line);
+  outline: none;
+  border-radius: 999px;
+}
+input[type='range'].solar-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  background: var(--color-ink);
+  border-radius: 999px;
+  cursor: grab;
+  border: 4px solid var(--color-bg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+input[type='range'].solar-range::-webkit-slider-thumb:hover {
+  background: var(--color-primary);
+  transform: scale(1.15);
+}
+input[type='range'].solar-range:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  background: var(--color-accent);
+}
+input[type='range'].solar-range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  background: var(--color-ink);
+  border-radius: 999px;
+  cursor: grab;
+  border: 4px solid var(--color-bg);
+}
+
+/* ========================================================================
+   Motion system — keyframes & utilities
+   ======================================================================== */
+
+/* Gentle vertical float — used on decorative sun motifs and particles */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  45%       { transform: translateY(-16px); }
+  75%       { transform: translateY(6px); }
+}
+
+/* Horizontal drift + fade — ambient background particles */
+@keyframes particle-drift {
+  0%   { transform: translateY(0) translateX(0);    opacity: 0.25; }
+  30%  { transform: translateY(-18px) translateX(5px); opacity: 0.65; }
+  65%  { transform: translateY(8px) translateX(-4px);  opacity: 0.4;  }
+  100% { transform: translateY(0) translateX(0);    opacity: 0.25; }
+}
+
+/* Slow clockwise spin — section background sun motifs */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Pulse glow — accent dots and solar badge indicators */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 205, 70, 0); }
+  50%       { box-shadow: 0 0 0 8px rgba(255, 205, 70, 0.12), 0 0 24px 0 rgba(255,205,70,0.2); }
+}
+
+/* Shimmer line — left-to-right horizontal sweep */
+@keyframes shimmer-ltr {
+  0%   { transform: scaleX(0); opacity: 1; }
+  80%  { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+
+/* Fade up — generic entrance utility */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Utility classes */
+.animate-float {
+  animation: float-y 7s ease-in-out infinite;
+}
+.animate-float-slow {
+  animation: float-y 10s ease-in-out infinite;
+}
+.animate-spin-slow {
+  animation: spin-slow 80s linear infinite;
+}
+.animate-glow-pulse {
+  animation: glow-pulse 2.5s ease-in-out infinite;
+}
+
+/* Sun motif — decorative background element used in sections */
+.sun-motif {
+  border-radius: 50%;
+  border: 1px solid rgba(255, 205, 70, 0.2);
+  position: absolute;
+  pointer-events: none;
+}
+.sun-motif::before {
+  content: '';
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 205, 70, 0.15);
+}
+.sun-motif::after {
+  content: '';
+  position: absolute;
+  inset: 28%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,205,70,0.08) 0%, transparent 70%);
+}
+
+/* Section atmospheric mesh — subtle gradient orbs behind content */
+.atmo-mesh {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.atmo-mesh-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0;
+  animation: fade-up 1s ease forwards;
+}

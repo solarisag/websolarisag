@@ -56,13 +56,15 @@ export default function Contact() {
   const [form, setForm] = useState({
     tipo: '',
     factura: 450_000,
+    estrato: 4,
     problema: '',
     ciudad: '',
     nombre: '',
     whatsapp: ''
   })
 
-  const isMant = form.tipo === 'Mantenimiento'
+  const isMant        = form.tipo === 'Mantenimiento'
+  const isResidencial = form.tipo === 'Residencial'
   const STEPS = isMant ? STEPS_MANT : STEPS_NORMAL
 
   const update = (k, v) => setForm((f) => ({ ...f, [k]: v }))
@@ -102,7 +104,7 @@ export default function Contact() {
         `📱 WhatsApp: ${form.whatsapp}\n\n` +
         `Necesito asistencia técnica para mi sistema solar. ¿Cuándo pueden agendar la visita?`
       : `Hola, soy ${form.nombre}.\n\n` +
-        `🏗️ Tipo de instalación: ${form.tipo}\n` +
+        `🏗️ Tipo de instalación: ${form.tipo}${isResidencial ? ` · Estrato ${form.estrato}` : ''}\n` +
         `💡 Factura mensual: ${fmt(form.factura)}\n` +
         `📍 Ciudad: ${form.ciudad}\n` +
         `📱 WhatsApp: ${form.whatsapp}\n\n` +
@@ -164,7 +166,7 @@ export default function Contact() {
                 'Visita técnica sin costo',
                 'Propuesta en 48h',
                 'Sin compromiso de compra',
-                '26 años de experiencia',
+                '25 años de garantía en cada sistema',
               ].map((item) => (
                 <span key={item} className="flex items-center gap-3 font-sans text-[14px]"
                   style={{ color: 'rgba(255,255,255,0.65)' }}>
@@ -326,10 +328,33 @@ export default function Contact() {
                           </div>
                         )}
 
-                        {/* STEP 1 — Factura (normal) o Problema (mantenimiento) */}
+                        {/* STEP 1 — Estrato+Factura (residencial), Factura (otros), Problema (mantenimiento) */}
                         {step === 1 && !isMant && (
                           <div>
-                            <div className="text-center mb-6 py-4 rounded-xl"
+                            {isResidencial && (
+                              <div className="mb-6">
+                                <span className="text-[10px] uppercase tracking-label text-muted block mb-3">
+                                  Estrato
+                                </span>
+                                <div className="flex gap-2 flex-wrap mb-1">
+                                  {[1, 2, 3, 4, 5, 6].map((e) => (
+                                    <button
+                                      key={e}
+                                      onClick={() => update('estrato', e)}
+                                      className="w-11 h-11 rounded-full border-2 font-sans font-semibold text-[14px] transition-all duration-200"
+                                      style={{
+                                        borderColor: form.estrato === e ? 'var(--color-primary)' : 'var(--color-line)',
+                                        background: form.estrato === e ? 'var(--color-primary)' : 'transparent',
+                                        color: form.estrato === e ? 'white' : 'var(--color-ink)',
+                                      }}
+                                    >
+                                      {e}
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                            <div className="text-center mb-4 py-4 rounded-xl"
                               style={{ background: 'var(--color-surface)' }}>
                               <span className="flama-bold-italic text-primary"
                                 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}>
@@ -343,22 +368,18 @@ export default function Contact() {
                               type="range" min="100000" max="5000000" step="50000"
                               value={form.factura}
                               onChange={(e) => update('factura', +e.target.value)}
-                              className="solar-range mb-2"
-                              style={{
-                                background: `linear-gradient(to right, var(--color-primary) 0%, var(--color-primary) ${pct}%, var(--color-line) ${pct}%, var(--color-line) 100%)`
-                              }}
+                              className="w-full mb-2 accent-primary"
+                              style={{ height: '4px', cursor: 'pointer' }}
                             />
-                            <div className="flex justify-between text-[10px] uppercase tracking-label text-muted mb-6">
+                            <div className="flex justify-between text-[10px] uppercase tracking-label text-muted mb-5">
                               <span>$100K</span>
                               <span>$5M</span>
                             </div>
                             <div className="flex flex-wrap gap-2 mb-2">
-                              {[
-                                { l: 'Casa', v: 300_000 },
-                                { l: 'Apartamento', v: 180_000 },
-                                { l: 'Oficina', v: 1_200_000 },
-                                { l: 'Industria', v: 4_000_000 },
-                              ].map((p) => (
+                              {(isResidencial
+                                ? [{ l: 'Casa', v: 300_000 }, { l: 'Apartamento', v: 180_000 }]
+                                : [{ l: 'Oficina', v: 1_200_000 }, { l: 'Industria', v: 4_000_000 }]
+                              ).map((p) => (
                                 <button
                                   key={p.l}
                                   onClick={() => update('factura', p.v)}
@@ -514,10 +535,18 @@ export default function Contact() {
                           </span>
                         )}
                         {step > 1 && !isMant && (
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-sans"
-                            style={{ background: 'rgba(39,83,96,0.08)', color: 'var(--color-primary)' }}>
-                            {fmt(form.factura)}/mes
-                          </span>
+                          <>
+                            {isResidencial && (
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-sans"
+                                style={{ background: 'rgba(39,83,96,0.08)', color: 'var(--color-primary)' }}>
+                                Estrato {form.estrato}
+                              </span>
+                            )}
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-sans"
+                              style={{ background: 'rgba(39,83,96,0.08)', color: 'var(--color-primary)' }}>
+                              {fmt(form.factura)}/mes
+                            </span>
+                          </>
                         )}
                         {step > 1 && isMant && form.problema && (
                           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-sans"
@@ -552,7 +581,7 @@ export default function Contact() {
                     Abrimos WhatsApp con tu consulta lista. Un asesor te responde hoy mismo.
                   </p>
                   <button
-                    onClick={() => { setSent(false); setStep(0); setForm({ tipo: '', factura: 450_000, problema: '', ciudad: '', nombre: '', whatsapp: '' }) }}
+                    onClick={() => { setSent(false); setStep(0); setForm({ tipo: '', factura: 450_000, estrato: 4, problema: '', ciudad: '', nombre: '', whatsapp: '' }) }}
                     className="font-sans text-[13px] text-muted hover:text-ink transition-colors underline underline-offset-4"
                   >
                     Enviar otra consulta

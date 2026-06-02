@@ -13,6 +13,9 @@ const FILTERS = [
   { key: 'industrial', label: 'Industrial' },
 ]
 
+// Split "Todos" view into 2 rows after this many panels
+const ROW_SPLIT = 4
+
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(
     () => typeof window !== 'undefined' && window.innerWidth >= 768
@@ -212,10 +215,7 @@ function ProjectModal({ project, onClose }) {
 }
 
 /* ─── Accordion Panel ────────────────────────────────────────────── */
-function Panel({ project, index, hovered, setHovered, isDesktop, onSelect }) {
-  const isActive   = hovered === index
-  const anyHovered = hovered !== null
-
+function Panel({ project, displayIndex, isActive, anyHovered, isDesktop, onSelect, onHover, onHoverEnd }) {
   const content = (
     <>
       {/* Background photo */}
@@ -250,7 +250,7 @@ function Panel({ project, index, hovered, setHovered, isDesktop, onSelect }) {
           className="flama-bold-italic text-white leading-none"
           style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)' }}
         >
-          {String(index + 1).padStart(2, '0')}
+          {String(displayIndex + 1).padStart(2, '0')}
         </motion.span>
         <span
           className="text-[10px] uppercase tracking-[0.16em] text-accent mt-2"
@@ -312,8 +312,8 @@ function Panel({ project, index, hovered, setHovered, isDesktop, onSelect }) {
       style={{ flex: 1 }}
       animate={{ flexGrow: isActive ? 1.6 : anyHovered ? 0.7 : 1 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      onMouseEnter={() => setHovered(index)}
-      onMouseLeave={() => setHovered(null)}
+      onMouseEnter={onHover}
+      onMouseLeave={onHoverEnd}
     >
       {isDesktop ? (
         <div className="absolute inset-0" onClick={() => onSelect(project)}>
@@ -328,6 +328,35 @@ function Panel({ project, index, hovered, setHovered, isDesktop, onSelect }) {
   )
 }
 
+/* ─── Accordion Row ──────────────────────────────────────────────── */
+function AccordionRow({ rowProjects, startIndex, hovered, setHovered, isDesktop, onSelect, className }) {
+  const anyHoveredInRow = rowProjects.some((p) => p.id === hovered)
+
+  return (
+    <motion.div
+      className={`flex flex-col md:flex-row ${className}`}
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {rowProjects.map((p, i) => (
+        <Panel
+          key={p.id}
+          project={p}
+          displayIndex={startIndex + i}
+          isActive={hovered === p.id}
+          anyHovered={anyHoveredInRow}
+          isDesktop={isDesktop}
+          onSelect={onSelect}
+          onHover={() => setHovered(p.id)}
+          onHoverEnd={() => setHovered(null)}
+        />
+      ))}
+    </motion.div>
+  )
+}
+
 /* ─── Section ────────────────────────────────────────────────────── */
 export default function Projects() {
   const [hovered, setHovered]     = useState(null)
@@ -338,6 +367,10 @@ export default function Projects() {
   const filtered = activeFilter === 'todos'
     ? projects
     : projects.filter((p) => p.category === activeFilter)
+
+  const twoRows   = filtered.length > ROW_SPLIT
+  const row1      = twoRows ? filtered.slice(0, ROW_SPLIT) : filtered
+  const row2      = twoRows ? filtered.slice(ROW_SPLIT) : []
 
   return (
     <section id="proyectos">
@@ -413,26 +446,30 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Accordion panels */}
-      <motion.div
-        className="flex flex-col md:flex-row md:h-[88vh] md:min-h-[600px]"
-        initial={{ opacity: 0, y: 32 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-      >
-        {filtered.map((p, i) => (
-          <Panel
-            key={p.id}
-            project={p}
-            index={i}
-            hovered={hovered}
-            setHovered={setHovered}
-            isDesktop={isDesktop}
-            onSelect={setSelected}
-          />
-        ))}
-      </motion.div>
+      {/* Accordion — one or two rows depending on count */}
+      <AccordionRow
+        rowProjects={row1}
+        startIndex={0}
+        hovered={hovered}
+        setHovered={setHovered}
+        isDesktop={isDesktop}
+        onSelect={setSelected}
+        className={twoRows
+          ? 'md:h-[54vh] md:min-h-[380px]'
+          : 'md:h-[88vh] md:min-h-[600px]'
+        }
+      />
+      {twoRows && (
+        <AccordionRow
+          rowProjects={row2}
+          startIndex={row1.length}
+          hovered={hovered}
+          setHovered={setHovered}
+          isDesktop={isDesktop}
+          onSelect={setSelected}
+          className="md:h-[40vh] md:min-h-[280px]"
+        />
+      )}
 
       {/* Maintenance CTA */}
       <motion.div

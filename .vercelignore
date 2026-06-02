@@ -1,0 +1,8 @@
+.claude/
+node_modules/
+dist/
+public/projects/Palmar del Lago/videos/
+*.jpg
+*.JPG
+*.jpeg
+*.JPEG

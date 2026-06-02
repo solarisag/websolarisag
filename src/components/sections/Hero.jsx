@@ -34,30 +34,8 @@ function EnergyParticleLayer() {
 
 const STATS = [
   {
-    number: '+26',
-    label: 'años de experiencia\nen energía solar',
-    delay: 0.55,
-    accent: (
-      <svg width="36" height="20" viewBox="0 0 36 20" fill="none" aria-hidden="true">
-        <motion.polyline
-          points="0,18 8,12 16,14 26,4 36,2"
-          stroke="#FFCD46" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
-          strokeDasharray="44"
-          animate={{ strokeDashoffset: [44, 0, 0, 44] }}
-          transition={{ duration: 2.4, repeat: Infinity, times: [0, 0.48, 0.78, 1], ease: 'easeInOut' }}
-        />
-        <motion.circle
-          cx="36" cy="2" r="2.5" fill="#FFCD46"
-          animate={{ scale: [0.4, 1.5, 1, 0.4] }}
-          transition={{ duration: 2.4, repeat: Infinity, times: [0, 0.52, 0.78, 1], ease: 'easeInOut' }}
-          style={{ transformOrigin: '36px 2px' }}
-        />
-      </svg>
-    ),
-  },
-  {
-    number: '100%',
-    label: 'de ahorro posible\nen tu factura de luz',
+    number: '25',
+    label: 'años de garantía\nen cada sistema',
     delay: 0.67,
     accent: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">

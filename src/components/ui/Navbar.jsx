@@ -71,11 +71,7 @@ export default function Navbar() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className={`fixed top-0 inset-x-0 z-50 lg:hidden transition-all duration-400 ${
-          scrolled || open
-            ? 'bg-white/95 backdrop-blur-xl border-b border-black/8'
-            : 'bg-transparent'
-        }`}
+        className="fixed top-0 inset-x-0 z-50 lg:hidden bg-white border-b border-black/8"
       >
         <div className="flex items-center justify-between h-16 px-5">
           <Link to="/" aria-label="SolarISAG">

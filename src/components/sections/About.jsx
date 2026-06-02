@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import Counter from '../ui/Counter.jsx'
 
 const stats = [
-  { to: 100, suffix: '%', label: 'De ahorro posible\nen tu factura de luz' },
+  { to: 25, suffix: '', label: 'Años de garantía\nen cada sistema' },
   { to: 50,  suffix: '%', label: 'Deducción en\nimpuesto de renta' },
   { to: null, value: '+',  label: 'Valorización\nde tu propiedad' },
 ]
@@ -218,6 +218,20 @@ export default function About() {
                         </span>
                       </motion.div>
                     ))}
+                  </motion.div>
+
+                  {/* Sylvania partnership */}
+                  <motion.div variants={fadeUp} className="flex items-center gap-4 pt-2">
+                    <span className="text-white/35 text-[10px] uppercase tracking-label shrink-0 whitespace-nowrap">
+                      Distribuidor autorizado
+                    </span>
+                    <div className="h-px flex-1 bg-white/10" />
+                    <img
+                      src="/images/sylvania.png"
+                      alt="Sylvania"
+                      className="h-6 w-auto object-contain shrink-0"
+                      style={{ filter: 'brightness(0) invert(1)', opacity: 0.7 }}
+                    />
                   </motion.div>
 
                 </motion.div>

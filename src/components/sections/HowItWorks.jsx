@@ -106,8 +106,8 @@ const STEPS = [
   },
   {
     n: '04',
-    title: 'El excedente baja tu factura',
-    desc: 'Lo que no consumes va a la red. ESSA te lo contabiliza como crédito y lo descuenta de tu próxima factura.',
+    title: 'Los excedentes se convierten en dinero',
+    desc: 'Lo que no consumes va a la red. El operador lo valora y transfiere su valor directamente a tu cuenta bancaria.',
     color: 'var(--color-accent)',
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none">

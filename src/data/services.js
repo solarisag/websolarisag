@@ -9,19 +9,20 @@ export const services = [
     description:
       'Tu casa produce su propia energía. Instalamos el sistema completo — medidor bidireccional, certificación RETIE y conexión a la red incluida.',
     longDescription:
-      'Un sistema solar residencial bien diseñado puede cubrir entre el 70% y el 100% del consumo eléctrico de tu hogar. En SolarISAG dimensionamos cada instalación según tu consumo real, la orientación de tu techo y la irradiación solar de tu zona en Santander. No instalamos el sistema estándar: instalamos el tuyo.',
+      'Un sistema solar residencial bien diseñado puede cubrir hasta el 100% del consumo eléctrico de tu hogar. En SolarISAG dimensionamos cada instalación según tu consumo real, la orientación de tu techo y la irradiación solar de tu zona en Santander. No instalamos el sistema estándar: instalamos el tuyo.',
     includes: [
       'Estudio de consumo y visita técnica gratuita',
       'Diseño del sistema fotovoltaico a medida',
-      'Paneles solares TIER 1 (Bloomberg certificados)',
+      'Paneles solares con garantía de cumplimiento RETIE',
       'Inversor On-Grid con monitoreo en tiempo real',
       'Medidor bidireccional e instalación eléctrica',
       'Certificación RETIE y registro ante ESSA Grupo EPM',
       '25 años de garantía de eficiencia al 100%',
       'Soporte técnico post-instalación incluido',
+      'Primer mantenimiento y lavado de paneles gratis',
     ],
     benefits: [
-      'Ahorro de hasta el 100% en tu factura de luz',
+      'Hasta 100% de reducción en consumo de energía eléctrica',
       'Valorización de tu propiedad',
       'Deducción del 50% en impuesto de renta',
       'Excedentes vendidos a la red eléctrica',
@@ -38,14 +39,13 @@ export const services = [
     description:
       'Convierte el consumo eléctrico de tu empresa en ahorro mensual. Sistema dimensionado para tu demanda real, con excedentes a tu favor.',
     longDescription:
-      'Las empresas en Colombia pueden reducir hasta un 70% de sus costos energéticos con energía solar. Además, la Ley 1715 permite deducir el 50% de la inversión del impuesto de renta y aplicar depreciación acelerada. En SolarISAG gestionamos los beneficios tributarios junto con la instalación — tu contador y tu gerencia lo van a agradecer.',
+      'Las empresas en Colombia pueden cubrir hasta el 100% de su consumo de energía convencional con energía solar. Además, la Ley 1715 permite deducir el 50% de la inversión del impuesto de renta y aplicar depreciación acelerada. En SolarISAG dimensionamos cada sistema según la demanda real de tu empresa — tu contador y tu gerencia lo van a agradecer.',
     includes: [
       'Auditoría energética detallada de tus instalaciones',
-      'Ingeniería de sistemas trifásicos de alta capacidad',
-      'Paneles y equipos TIER 1 con garantía de fabricante',
+      'Sistemas solares fotovoltaicos empresariales de gran capacidad',
+      'Paneles solares con garantía de cumplimiento RETIE',
       'Inversores industriales con monitoreo centralizado',
       'Gestión completa de trámites RETIE y ESSA',
-      'Asesoría para aplicar beneficios tributarios Ley 1715',
       'Mantenimiento preventivo programado',
       'Dashboard de producción y ahorro en tiempo real',
     ],
@@ -70,9 +70,8 @@ export const services = [
       'Las plantas industriales con facturas superiores a $5M COP mensuales tienen el mayor potencial de retorno en energía solar. Diseñamos sistemas de alta potencia que operan en paralelo con la red, sin interrupciones en tu proceso productivo. Cada proyecto industrial incluye ingeniería especializada, análisis estructural de cubierta y cumplimiento de normativa RETIE para instalaciones de gran escala.',
     includes: [
       'Estudio de factibilidad técnica y estructural',
-      'Diseño de sistemas de 50 kWp a varios MW',
-      'Paneles bifaciales TIER 1 de alta eficiencia',
-      'Inversores centrales o de cadena según demanda',
+      'Diseño de sistemas solares industriales desde 50 kWp en adelante',
+      'Paneles solares con garantía de cumplimiento RETIE',
       'Sistema de monitoreo SCADA integrable a tu ERP',
       'Obras civiles y estructurales de soporte',
       'Certificación RETIE industrial y registro UPME',
@@ -80,7 +79,7 @@ export const services = [
     ],
     benefits: [
       'Retorno de inversión entre 3 y 6 años',
-      'Reducción de hasta el 75% en costos energéticos',
+      'Reducción significativa en costos energéticos',
       'Beneficios tributarios Ley 1715 aplicables',
       'Sistema activo 25+ años sin mantenimiento mayor',
     ],
@@ -99,7 +98,7 @@ export const services = [
       'Un sistema solar sin mantenimiento pierde entre un 15% y un 25% de su capacidad en los primeros dos años. Polvo, hojas, conexiones oxidadas y microinversores descalibrados son las causas más comunes. En SolarISAG hacemos el diagnóstico completo, limpiamos los paneles con equipo especializado, revisamos todas las conexiones eléctricas y te entregamos un informe detallado del estado real de tu sistema — no importa quién lo instaló.',
     includes: [
       'Diagnóstico visual y eléctrico completo',
-      'Limpieza profesional de paneles con agua desmineralizada',
+      'Limpieza profesional de paneles',
       'Revisión y ajuste de conexiones y cableado',
       'Verificación de parámetros del inversor',
       'Termografía para detectar puntos calientes',

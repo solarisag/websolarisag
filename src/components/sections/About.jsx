@@ -221,17 +221,24 @@ export default function About() {
                   </motion.div>
 
                   {/* Sylvania partnership */}
-                  <motion.div variants={fadeUp} className="flex items-center gap-4 pt-2">
-                    <span className="text-white/35 text-[10px] uppercase tracking-label shrink-0 whitespace-nowrap">
-                      Distribuidor autorizado
-                    </span>
-                    <div className="h-px flex-1 bg-white/10" />
-                    <img
-                      src="/images/sylvania.png"
-                      alt="Sylvania"
-                      className="h-6 w-auto object-contain shrink-0"
-                      style={{ filter: 'brightness(0) invert(1)', opacity: 0.7 }}
-                    />
+                  <motion.div variants={fadeUp} className="rounded-xl p-4 flex items-center gap-4"
+                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                    <div className="flex-1">
+                      <span className="block text-white/40 text-[10px] uppercase tracking-label mb-0.5">
+                        Distribuidor autorizado
+                      </span>
+                      <span className="block text-white text-[13px] font-sans leading-snug">
+                        Respaldados por una marca líder mundial en iluminación y energía solar.
+                      </span>
+                    </div>
+                    <div className="shrink-0 bg-white rounded-lg px-4 py-2.5 flex items-center justify-center"
+                      style={{ minWidth: 120 }}>
+                      <img
+                        src="/images/sylvania.png"
+                        alt="Sylvania"
+                        className="h-8 w-auto object-contain"
+                      />
+                    </div>
                   </motion.div>
 
                 </motion.div>

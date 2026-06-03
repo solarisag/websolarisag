@@ -155,7 +155,7 @@ export default function Calculator() {
                 </span>
               </div>
 
-              < href="#contacto" className="btn-pill btn-pill-accent w-full flex justify-center">
+              <a href="#contacto" className="btn-pill btn-pill-accent w-full flex justify-center">
                 Solicitar propuesta exacta
                 <ArrowRightIcon size={14} />
               </a>

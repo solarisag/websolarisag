@@ -59,24 +59,6 @@ function Pill({ active, onClick, children, wide }) {
   )
 }
 
-const PRESETS = {
-  residencial: [
-    { label: 'Hogar',   v: 180_000 },
-    { label: 'Mediano', v: 350_000 },
-    { label: 'Grande',  v: 700_000 },
-  ],
-  comercial: [
-    { label: 'Pequeño', v: 300_000  },
-    { label: 'Mediano', v: 600_000  },
-    { label: 'Grande',  v: 1_000_000 },
-  ],
-  industrial: [
-    { label: 'Pequeño', v: 500_000   },
-    { label: 'Mediano', v: 900_000   },
-    { label: 'Grande',  v: 1_300_000 },
-  ],
-}
-
 const DEFAULT_BILL = { residencial: 350_000, comercial: 600_000, industrial: 900_000 }
 
 export default function Calculator() {
@@ -91,7 +73,6 @@ export default function Calculator() {
   const r       = useMemo(() => calc(bill, type), [bill, type])
   const pct     = ((bill - 95_000) / (1_500_000 - 95_000)) * 100
   const isLarge = bill >= 1_500_000
-  const presets = PRESETS[type]
 
   return (
     <section id="calculadora" className="relative py-24 md:py-32 overflow-hidden"
@@ -174,23 +155,7 @@ export default function Calculator() {
                 </span>
               </div>
 
-              {/* Quick presets */}
-              <div className="flex flex-wrap gap-2 mb-10">
-                {presets.map((p) => (
-                  <motion.button key={p.label} onClick={() => setBill(p.v)}
-                    whileTap={{ scale: 0.93, transition: { duration: 0.1 } }}
-                    className="px-4 py-2 rounded-full text-[12px] transition-all duration-250"
-                    style={{
-                      border: bill === p.v ? '1px solid #FFCD46' : '1px solid rgba(255,255,255,0.12)',
-                      background: bill === p.v ? 'rgba(255,205,70,0.12)' : 'transparent',
-                      color: bill === p.v ? '#FFCD46' : 'rgba(255,255,255,0.45)',
-                    }}>
-                    {p.label}
-                  </motion.button>
-                ))}
-              </div>
-
-              <a href="#contacto" className="btn-pill btn-pill-accent w-full flex justify-center">
+              < href="#contacto" className="btn-pill btn-pill-accent w-full flex justify-center">
                 Solicitar propuesta exacta
                 <ArrowRightIcon size={14} />
               </a>

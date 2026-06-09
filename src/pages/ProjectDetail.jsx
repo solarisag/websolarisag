@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from '../components/ui/Navbar.jsx'
 import Footer from '../components/ui/Footer.jsx'
@@ -44,6 +45,21 @@ function DetailRow({ label, value }) {
 export default function ProjectDetail() {
   const { slug } = useParams()
   const project = getProjectBySlug(slug)
+
+  useEffect(() => {
+    if (!project) return
+    const prev = document.title
+    document.title = `${project.title} · Proyecto Solar ${project.type} | SolarISAG`
+    const meta = document.querySelector('meta[name="description"]')
+    const prevDesc = meta?.getAttribute('content')
+    if (meta) meta.setAttribute('content',
+      `${project.description.slice(0, 140)}… · Sistema de ${project.kwp} kWp en ${project.location}. SolarISAG — distribuidores autorizados Sylvania.`
+    )
+    return () => {
+      document.title = prev
+      if (meta && prevDesc) meta.setAttribute('content', prevDesc)
+    }
+  }, [project])
 
   if (!project) return <NotFound />
 

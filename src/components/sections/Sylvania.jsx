@@ -123,7 +123,7 @@ export default function Sylvania() {
               variants={fadeUp}
               className="font-sans text-[15px] leading-relaxed text-black/55 max-w-sm"
             >
-              Somos distribuidores autorizados de Sylvania para la región de Santander.
+              Somos distribuidores autorizados de Sylvania en Colombia.
               Esto significa que cada sistema que instalamos usa módulos fotovoltaicos
               genuinos, con trazabilidad de origen y garantía real.
             </motion.p>

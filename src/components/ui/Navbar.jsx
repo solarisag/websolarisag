@@ -7,7 +7,7 @@ const navLinks = [
   { href: '/#nosotros',    label: 'Nosotros'         },
   { href: '/#servicios',   label: 'Servicios'        },
   { href: '/#proyectos',   label: 'Proyectos'        },
-  { href: '/#calculadora', label: 'Calcula tu ahorro'},
+  // { href: '/#calculadora', label: 'Calcula tu ahorro'},
 ]
 
 export default function Navbar() {

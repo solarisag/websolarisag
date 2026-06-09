@@ -38,9 +38,9 @@ export default function Home() {
       <Suspense fallback={<SectionFallback />}>
         <HowItWorks />
       </Suspense>
-      <Suspense fallback={<SectionFallback />}>
+      {/* <Suspense fallback={<SectionFallback />}>
         <Calculator />
-      </Suspense>
+      </Suspense> */}
       <Suspense fallback={<SectionFallback />}>
         <Support />
       </Suspense>

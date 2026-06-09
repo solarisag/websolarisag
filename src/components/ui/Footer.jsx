@@ -15,7 +15,7 @@ const navCols = [
   {
     title: 'Recursos',
     links: [
-      { label: 'Calculadora de ahorro', href: '/#calculadora' },
+
       { label: 'Cómo funciona', href: '/#como-funciona' },
       { label: 'Certificación RETIE', href: '/#servicios' }
     ]
@@ -142,19 +142,6 @@ export default function Footer() {
 
           {/* CTA column */}
           <motion.div variants={item} className="md:col-span-3 lg:col-span-2">
-            <span className="block text-[11px] uppercase tracking-label text-muted mb-5 font-sans">
-              Cotizar
-            </span>
-            <div className="space-y-4">
-              <p className="font-sans text-[13px] text-muted leading-relaxed">
-                ¿Cuánto pagas de luz? Calcula tu ahorro en 30 segundos.
-              </p>
-              <a href="/#calculadora"
-                className="inline-flex items-center gap-2 text-[13px] font-sans text-primary hover:text-ink transition-colors duration-250 group">
-                Ver calculadora
-                <ArrowRightIcon size={12} className="group-hover:translate-x-1 transition-transform duration-250" />
-              </a>
-            </div>
           </motion.div>
         </motion.div>
 

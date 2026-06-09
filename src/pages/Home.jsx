@@ -10,6 +10,7 @@ const Projects   = lazy(() => import('../components/sections/Projects.jsx'))
 const Services   = lazy(() => import('../components/sections/Services.jsx'))
 const HowItWorks = lazy(() => import('../components/sections/HowItWorks.jsx'))
 const Calculator = lazy(() => import('../components/sections/Calculator.jsx'))
+const Sylvania   = lazy(() => import('../components/sections/Sylvania.jsx'))
 const Support    = lazy(() => import('../components/sections/Support.jsx'))
 const Contact    = lazy(() => import('../components/sections/Contact.jsx'))
 
@@ -37,6 +38,9 @@ export default function Home() {
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <HowItWorks />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <Sylvania />
       </Suspense>
       {/* <Suspense fallback={<SectionFallback />}>
         <Calculator />

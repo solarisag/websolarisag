@@ -220,26 +220,6 @@ export default function About() {
                     ))}
                   </motion.div>
 
-                  {/* Sylvania partnership */}
-                  <motion.div variants={fadeUp} className="rounded-xl p-4 flex items-center gap-4"
-                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                    <div className="flex-1">
-                      <span className="block text-white/40 text-[10px] uppercase tracking-label mb-0.5">
-                        Distribuidor autorizado
-                      </span>
-                      <span className="block text-white text-[13px] font-sans leading-snug">
-                        Respaldados por una marca líder mundial en iluminación y energía solar.
-                      </span>
-                    </div>
-                    <div className="shrink-0 bg-white rounded-lg px-4 py-2.5 flex items-center justify-center"
-                      style={{ minWidth: 120 }}>
-                      <img
-                        src="/images/sylvania.png"
-                        alt="Sylvania"
-                        className="h-8 w-auto object-contain"
-                      />
-                    </div>
-                  </motion.div>
 
                 </motion.div>
               </div>

@@ -211,11 +211,11 @@ export default function Sylvania() {
               className="flama-bold-italic text-ink leading-[1.06]"
               style={{ fontSize: 'clamp(2rem, 3.8vw, 3rem)' }}
             >
-              Paneles que respaldan
+              Distribuidores
               <br />
-              cada <em style={{ color: '#007A3E' }}>promesa</em> que
+              autorizados de
               <br />
-              te hacemos.
+              <em style={{ color: '#007A3E' }}>Sylvania</em> en Colombia.
             </motion.h2>
 
             {/* Body */}

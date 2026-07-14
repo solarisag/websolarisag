@@ -6,11 +6,11 @@ import { MenuIcon, CloseIcon } from './Icons.jsx'
 // route: true  → navegación SPA con <Link> (página propia)
 // route: false → ancla de sección con <a href="/#..."> (scroll en el inicio)
 const navLinks = [
-  { to: '/#servicios',                      label: 'Servicios' },
-  { to: '/#proyectos',                      label: 'Proyectos' },
-  { to: '/productos',                       label: 'Nuestros productos', short: 'Productos', route: true },
-  { to: '/mantenimiento-paneles-solares',   label: 'Mantenimiento',      route: true },
-  { to: '/articulos',                       label: 'Artículos',          route: true },
+  { to: '/#servicios',      label: 'Servicios' },
+  { to: '/#proyectos',      label: 'Proyectos' },
+  { to: '/#productos',      label: 'Nuestros productos', short: 'Productos' },
+  { to: '/#mantenimiento',  label: 'Mantenimiento' },
+  { to: '/articulos',       label: 'Artículos',          route: true },
 ]
 
 // Enlace de escritorio (píldora)

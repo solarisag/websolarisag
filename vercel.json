@@ -5,7 +5,10 @@
   "trailingSlash": false,
   "cleanUrls": true,
   "redirects": [
-    { "source": "/sylvania", "destination": "/productos", "permanent": true },
+    { "source": "/sylvania", "destination": "/#productos", "permanent": true },
+    { "source": "/productos", "destination": "/#productos", "permanent": true },
+    { "source": "/mantenimiento-paneles-solares", "destination": "/#mantenimiento", "permanent": true },
+    { "source": "/mantenimiento", "destination": "/#mantenimiento", "permanent": true },
     { "source": "/blog", "destination": "/articulos", "permanent": true },
     { "source": "/noticias", "destination": "/articulos", "permanent": true }
   ]

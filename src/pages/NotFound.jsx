@@ -5,8 +5,8 @@ import { ArrowRightIcon } from '../components/ui/Icons.jsx'
 const LINKS = [
   { label: 'Inicio', to: '/' },
   { label: 'Servicios', to: '/#servicios' },
-  { label: 'Nuestros productos', to: '/productos' },
-  { label: 'Mantenimiento', to: '/mantenimiento-paneles-solares' },
+  { label: 'Nuestros productos', to: '/#productos' },
+  { label: 'Mantenimiento', to: '/#mantenimiento' },
   { label: 'Artículos', to: '/articulos' },
   { label: 'Contacto', to: '/#contacto' },
 ]

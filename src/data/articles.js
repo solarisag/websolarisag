@@ -158,7 +158,7 @@ export const articles = [
       { type: 'p', text: 'Subir a un techo y manipular una instalación eléctrica sin conocimiento es peligroso, tanto por el riesgo de caída como por el eléctrico. Además, una limpieza mal hecha puede rayar los paneles o dañar sellos. El mantenimiento lo debe hacer personal con equipo y experiencia; no es una tarea para resolver por cuenta propia.' },
       { type: 'h2', text: 'Vale para cualquier instalación', id: 'cualquier-sistema' },
       { type: 'p', text: 'El mantenimiento no requiere que hayamos instalado el sistema. Revisamos instalaciones de cualquier marca o instalador previo, porque el diagnóstico se hace sobre el estado real del equipo, no sobre quién lo montó.' },
-      { type: 'cta', text: '¿Notaste que tu sistema produce menos? Solicita una revisión técnica', href: '/mantenimiento-paneles-solares', label: 'Ver servicio de mantenimiento' },
+      { type: 'cta', text: '¿Notaste que tu sistema produce menos? Solicita una revisión técnica', href: '/#mantenimiento', label: 'Ver servicio de mantenimiento' },
     ],
     faqs: [
       { q: '¿Cada cuánto se deben revisar los paneles?', a: 'Depende del entorno (polvo, árboles, aves) y del comportamiento de la producción. No hay una cifra universal; el monitoreo es la mejor guía para decidir cuándo revisar.' },
@@ -166,7 +166,7 @@ export const articles = [
       { q: '¿Se debe apagar el sistema para hacer mantenimiento?', a: 'El procedimiento seguro incluye trabajar con las protecciones adecuadas. Un técnico gestiona el estado del sistema durante la intervención; no es algo que deba improvisar el usuario.' },
       { q: '¿Revisan sistemas instalados por otras empresas?', a: 'Sí. El diagnóstico se hace sobre el estado real del equipo, sin importar quién lo instaló.' },
     ],
-    relatedService: { label: 'Conoce el servicio de mantenimiento', path: '/mantenimiento-paneles-solares' },
+    relatedService: { label: 'Conoce el servicio de mantenimiento', path: '/#mantenimiento' },
     relatedArticles: ['on-grid-hibrido-off-grid-diferencias', 'paneles-solares-conectados-a-la-red'],
   },
 ]

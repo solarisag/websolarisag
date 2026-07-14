@@ -14,8 +14,6 @@ export const routes = [
     element: <Layout />,
     children: [
       { index: true, lazy: page(() => import('./pages/Home.jsx')), entry: 'src/pages/Home.jsx' },
-      { path: 'productos', lazy: page(() => import('./pages/Productos.jsx')) },
-      { path: 'mantenimiento-paneles-solares', lazy: page(() => import('./pages/Mantenimiento.jsx')) },
       {
         path: 'proyectos/:slug',
         lazy: page(() => import('./pages/ProjectDetail.jsx')),

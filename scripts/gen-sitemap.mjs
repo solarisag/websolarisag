@@ -12,9 +12,7 @@ const today = new Date().toISOString().slice(0, 10)
 
 const staticUrls = [
   { loc: '/', changefreq: 'weekly', priority: '1.0', lastmod: today },
-  { loc: '/productos', changefreq: 'monthly', priority: '0.8', lastmod: today },
-  { loc: '/mantenimiento-paneles-solares', changefreq: 'monthly', priority: '0.8', lastmod: today },
-  { loc: '/articulos', changefreq: 'weekly', priority: '0.7', lastmod: today },
+  { loc: '/articulos', changefreq: 'weekly', priority: '0.8', lastmod: today },
 ]
 
 const articleUrls = articles.map((a) => ({

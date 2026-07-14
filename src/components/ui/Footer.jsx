@@ -7,8 +7,8 @@ const navCols = [
     title: 'Servicios',
     links: [
       { label: 'Sistemas solares', href: '/#servicios' },
-      { label: 'Mantenimiento', href: '/mantenimiento-paneles-solares', route: true },
-      { label: 'Nuestros productos', href: '/productos', route: true },
+      { label: 'Mantenimiento', href: '/#mantenimiento' },
+      { label: 'Nuestros productos', href: '/#productos' },
       { label: 'Cómo funciona', href: '/#como-funciona' },
     ]
   },

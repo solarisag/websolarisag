@@ -1,16 +1,21 @@
 import { lazy, Suspense } from 'react'
 import Seo from '../components/Seo.jsx'
-import { localBusinessSchema, websiteSchema } from '../data/schema.js'
+import { localBusinessSchema, websiteSchema, faqSchema } from '../data/schema.js'
 import Hero from '../components/sections/Hero.jsx'
 import About from '../components/sections/About.jsx'
+import { HOME_FAQS } from '../components/sections/Faq.jsx'
 
 // Below-the-fold sections — code-split and lazy loaded
-const Projects   = lazy(() => import('../components/sections/Projects.jsx'))
-const Services   = lazy(() => import('../components/sections/Services.jsx'))
-const HowItWorks = lazy(() => import('../components/sections/HowItWorks.jsx'))
-const Sylvania   = lazy(() => import('../components/sections/Sylvania.jsx'))
-const Support    = lazy(() => import('../components/sections/Support.jsx'))
-const Contact    = lazy(() => import('../components/sections/Contact.jsx'))
+const Projects     = lazy(() => import('../components/sections/Projects.jsx'))
+const Services     = lazy(() => import('../components/sections/Services.jsx'))
+const HowItWorks   = lazy(() => import('../components/sections/HowItWorks.jsx'))
+const Productos    = lazy(() => import('../components/sections/Productos.jsx'))
+const Sylvania     = lazy(() => import('../components/sections/Sylvania.jsx'))
+const Mantenimiento = lazy(() => import('../components/sections/Mantenimiento.jsx'))
+const Support      = lazy(() => import('../components/sections/Support.jsx'))
+const Cobertura    = lazy(() => import('../components/sections/Cobertura.jsx'))
+const Faq          = lazy(() => import('../components/sections/Faq.jsx'))
+const Contact      = lazy(() => import('../components/sections/Contact.jsx'))
 
 // Minimal placeholder so layout doesn't jump while sections stream in
 function SectionFallback() {
@@ -24,7 +29,7 @@ export default function Home() {
         title="Paneles solares en Bucaramanga y Santander | SolarISAG"
         description="Diseño, instalación, legalización y mantenimiento de sistemas solares para hogares y empresas en Bucaramanga, Floridablanca, Girón y Piedecuesta. Solicita una evaluación con SolarISAG."
         path="/"
-        jsonLd={[localBusinessSchema, websiteSchema]}
+        jsonLd={[localBusinessSchema, websiteSchema, faqSchema(HOME_FAQS)]}
       />
 
       {/* Critical above-the-fold — not lazy */}
@@ -42,10 +47,22 @@ export default function Home() {
         <HowItWorks />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
+        <Productos />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
         <Sylvania />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
+        <Mantenimiento />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
         <Support />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <Cobertura />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <Faq />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <Contact />

@@ -9,7 +9,6 @@ import { HOME_FAQS } from '../components/sections/Faq.jsx'
 const Projects     = lazy(() => import('../components/sections/Projects.jsx'))
 const Services     = lazy(() => import('../components/sections/Services.jsx'))
 const HowItWorks   = lazy(() => import('../components/sections/HowItWorks.jsx'))
-const Productos    = lazy(() => import('../components/sections/Productos.jsx'))
 const Sylvania     = lazy(() => import('../components/sections/Sylvania.jsx'))
 const Mantenimiento = lazy(() => import('../components/sections/Mantenimiento.jsx'))
 const Support      = lazy(() => import('../components/sections/Support.jsx'))
@@ -45,9 +44,6 @@ export default function Home() {
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <HowItWorks />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
-        <Productos />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <Sylvania />

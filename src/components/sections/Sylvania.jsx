@@ -153,7 +153,7 @@ function CertCard({ cert, index }) {
 
 export default function Sylvania() {
   return (
-    <section id="sylvania" className="relative overflow-hidden" style={{ background: '#F5F4F0' }}>
+    <section id="productos" className="relative overflow-hidden" style={{ background: '#F5F4F0' }}>
 
       {/* Subtle grid texture */}
       <div className="absolute inset-0 pointer-events-none" style={{
@@ -176,7 +176,7 @@ export default function Sylvania() {
           className="flex items-center gap-4 mb-14"
         >
           <span className="inline-block text-[11px] uppercase tracking-label text-black/40">
-            Distribuidor autorizado
+            Nuestros productos · Distribuidor autorizado
           </span>
           <div className="h-px w-12 bg-black/15" />
         </motion.div>
@@ -223,9 +223,10 @@ export default function Sylvania() {
               variants={fadeUp}
               className="font-sans text-[15px] leading-relaxed text-black/55 max-w-sm"
             >
-              Somos distribuidores autorizados de Sylvania en Colombia.
-              Esto significa que cada sistema que instalamos usa módulos fotovoltaicos
-              genuinos, con trazabilidad de origen y garantía real.
+              Los paneles que instalamos son Sylvania, una marca reconocida en
+              soluciones de energía. Como distribuidores autorizados en Colombia,
+              cada módulo es genuino, con trazabilidad de origen y garantía real —
+              no equipos sin respaldo.
             </motion.p>
 
             {/* Accent rule */}

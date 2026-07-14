@@ -24,7 +24,9 @@ export const CATEGORIES = [
 export const categoryLabel = (slug) =>
   CATEGORIES.find((c) => c.slug === slug)?.label || slug
 
-export const articles = [
+import { extraArticles } from './articlesExtra.js'
+
+const coreArticles = [
   {
     slug: 'on-grid-hibrido-off-grid-diferencias',
     title: 'Sistema On-Grid, híbrido u Off-Grid: ¿cuál necesitas?',
@@ -170,6 +172,9 @@ export const articles = [
     relatedArticles: ['on-grid-hibrido-off-grid-diferencias', 'paneles-solares-conectados-a-la-red'],
   },
 ]
+
+// Lista final de artículos: los 2 base + los adicionales de la Ola 3.
+export const articles = [...coreArticles, ...extraArticles]
 
 export const getArticleBySlug = (slug) => articles.find((a) => a.slug === slug)
 

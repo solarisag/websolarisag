@@ -125,8 +125,11 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/80 pointer-events-none" />
+      {/* Overlay — gradient darker at the bottom so the headline stays legible
+          while the video remains visible up top */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.45) 100%)',
+      }} />
 
       {/* Photon particles — rising light energy */}
       <EnergyParticleLayer />

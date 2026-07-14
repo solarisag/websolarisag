@@ -1,7 +1,6 @@
 import { lazy, Suspense } from 'react'
-import Navbar from '../components/ui/Navbar.jsx'
-import Footer from '../components/ui/Footer.jsx'
-import BackToTop from '../components/ui/BackToTop.jsx'
+import Seo from '../components/Seo.jsx'
+import { localBusinessSchema, websiteSchema } from '../data/schema.js'
 import Hero from '../components/sections/Hero.jsx'
 import About from '../components/sections/About.jsx'
 
@@ -9,7 +8,6 @@ import About from '../components/sections/About.jsx'
 const Projects   = lazy(() => import('../components/sections/Projects.jsx'))
 const Services   = lazy(() => import('../components/sections/Services.jsx'))
 const HowItWorks = lazy(() => import('../components/sections/HowItWorks.jsx'))
-const Calculator = lazy(() => import('../components/sections/Calculator.jsx'))
 const Sylvania   = lazy(() => import('../components/sections/Sylvania.jsx'))
 const Support    = lazy(() => import('../components/sections/Support.jsx'))
 const Contact    = lazy(() => import('../components/sections/Contact.jsx'))
@@ -22,8 +20,12 @@ function SectionFallback() {
 export default function Home() {
   return (
     <main className="bg-white text-ink" style={{ backgroundColor: '#FFFFFF' }}>
-      <Navbar />
-      <BackToTop />
+      <Seo
+        title="Paneles solares en Bucaramanga y Santander | SolarISAG"
+        description="Diseño, instalación, legalización y mantenimiento de sistemas solares para hogares y empresas en Bucaramanga, Floridablanca, Girón y Piedecuesta. Solicita una evaluación con SolarISAG."
+        path="/"
+        jsonLd={[localBusinessSchema, websiteSchema]}
+      />
 
       {/* Critical above-the-fold — not lazy */}
       <Hero />
@@ -42,17 +44,12 @@ export default function Home() {
       <Suspense fallback={<SectionFallback />}>
         <Sylvania />
       </Suspense>
-      {/* <Suspense fallback={<SectionFallback />}>
-        <Calculator />
-      </Suspense> */}
       <Suspense fallback={<SectionFallback />}>
         <Support />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <Contact />
       </Suspense>
-
-      <Footer />
     </main>
   )
 }

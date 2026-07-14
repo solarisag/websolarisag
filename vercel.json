@@ -1,8 +1,12 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "vite",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "framework": null,
+  "trailingSlash": false,
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/sylvania", "destination": "/productos", "permanent": true },
+    { "source": "/blog", "destination": "/articulos", "permanent": true },
+    { "source": "/noticias", "destination": "/articulos", "permanent": true }
   ]
 }

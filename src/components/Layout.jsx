@@ -1,20 +1,21 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Lenis from 'lenis'
-import Home from './pages/Home.jsx'
-import ProjectDetail from './pages/ProjectDetail.jsx'
+import { Analytics } from '@vercel/analytics/react'
+import Navbar from './ui/Navbar.jsx'
+import Footer from './ui/Footer.jsx'
+import BackToTop from './ui/BackToTop.jsx'
 
-function ScrollToTop() {
+// Restablece el scroll al cambiar de ruta (salvo cuando hay ancla #)
+function useScrollRestoration() {
   const { pathname, hash } = useLocation()
   useEffect(() => {
-    if (!hash) {
-      window.scrollTo({ top: 0, behavior: 'instant' })
-    }
+    if (!hash) window.scrollTo({ top: 0, behavior: 'instant' })
   }, [pathname, hash])
-  return null
 }
 
-function SmoothScroll() {
+// Smooth scroll con Lenis + manejo de anclas internas (#seccion)
+function useSmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -24,19 +25,22 @@ function SmoothScroll() {
       touchMultiplier: 1.5,
     })
 
+    let rafId
     function raf(time) {
       lenis.raf(time)
-      requestAnimationFrame(raf)
+      rafId = requestAnimationFrame(raf)
     }
-    requestAnimationFrame(raf)
+    rafId = requestAnimationFrame(raf)
 
-    // anchor clicks — scroll to section smoothly
     const handleAnchor = (e) => {
       const a = e.target.closest('a[href]')
       if (!a) return
       const href = a.getAttribute('href')
+      // Solo interceptar anclas dentro de la misma página (mismo pathname)
       const hashIdx = href.indexOf('#')
       if (hashIdx === -1) return
+      const pathPart = href.slice(0, hashIdx)
+      if (pathPart && pathPart !== '/' && pathPart !== window.location.pathname) return
       const id = href.slice(hashIdx + 1)
       const el = document.getElementById(id)
       if (!el) return
@@ -46,24 +50,24 @@ function SmoothScroll() {
     document.addEventListener('click', handleAnchor)
 
     return () => {
+      cancelAnimationFrame(rafId)
       lenis.destroy()
       document.removeEventListener('click', handleAnchor)
     }
   }, [])
-
-  return null
 }
 
-export default function App() {
+export default function Layout() {
+  useScrollRestoration()
+  useSmoothScroll()
+
   return (
     <>
-      <SmoothScroll />
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/proyectos/:slug" element={<ProjectDetail />} />
-        <Route path="*" element={<Home />} />
-      </Routes>
+      <Navbar />
+      <BackToTop />
+      <Outlet />
+      <Footer />
+      <Analytics />
     </>
   )
 }

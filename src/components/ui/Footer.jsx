@@ -4,20 +4,20 @@ import { FacebookIcon, InstagramIcon, WhatsAppIcon, ArrowRightIcon } from './Ico
 
 const navCols = [
   {
-    title: 'Empresa',
+    title: 'Servicios',
     links: [
-      { label: 'Nosotros', href: '/#nosotros' },
-      { label: 'Servicios', href: '/#servicios' },
-      { label: 'Proyectos', href: '/#proyectos' },
-      { label: 'Soporte', href: '/#soporte' }
+      { label: 'Sistemas solares', href: '/#servicios' },
+      { label: 'Mantenimiento', href: '/mantenimiento-paneles-solares', route: true },
+      { label: 'Nuestros productos', href: '/productos', route: true },
+      { label: 'Cómo funciona', href: '/#como-funciona' },
     ]
   },
   {
     title: 'Recursos',
     links: [
-
-      { label: 'Cómo funciona', href: '/#como-funciona' },
-      { label: 'Certificación RETIE', href: '/#servicios' }
+      { label: 'Artículos', href: '/articulos', route: true },
+      { label: 'Proyectos', href: '/#proyectos' },
+      { label: 'Nosotros', href: '/#nosotros' },
     ]
   },
   {
@@ -25,7 +25,6 @@ const navCols = [
     links: [
       { label: 'WhatsApp · 317 569 6832', href: 'https://wa.me/573175696832', external: true },
       { label: 'comercial@solarisag.com.co', href: 'mailto:comercial@solarisag.com.co' },
-      { label: 'Cra 23 #30-47 Girón', href: '#' }
     ]
   }
 ]
@@ -69,9 +68,12 @@ export default function Footer() {
                 onError={(e) => { e.target.src = '/images/logo.png' }}
               />
             </Link>
-            <p className="font-sans text-[14px] text-muted leading-relaxed max-w-sm mb-7">
-              Sistemas solares certificados para residencias, empresas e
-              industrias en Santander. 26 años transformando energía.
+            <p className="font-sans text-[14px] text-muted leading-relaxed max-w-sm mb-4">
+              Diseño, instalación, legalización y mantenimiento de sistemas solares
+              para hogares y empresas en Bucaramanga y Santander.
+            </p>
+            <p className="font-sans text-[12.5px] text-muted/80 leading-relaxed max-w-sm mb-7">
+              Cobertura: Bucaramanga, Floridablanca, Girón, Piedecuesta y municipios de Santander.
             </p>
 
             <a
@@ -126,17 +128,31 @@ export default function Footer() {
               <ul className="space-y-3.5">
                 {col.links.map((l) => (
                   <li key={l.label}>
-                    <a
-                      href={l.href}
-                      target={l.external ? '_blank' : undefined}
-                      rel={l.external ? 'noopener noreferrer' : undefined}
-                      className="font-sans text-[13px] text-muted hover:text-primary transition-colors duration-250"
-                    >
-                      {l.label}
-                    </a>
+                    {l.route ? (
+                      <Link
+                        to={l.href}
+                        className="font-sans text-[13px] text-muted hover:text-primary transition-colors duration-250"
+                      >
+                        {l.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={l.href}
+                        target={l.external ? '_blank' : undefined}
+                        rel={l.external ? 'noopener noreferrer' : undefined}
+                        className="font-sans text-[13px] text-muted hover:text-primary transition-colors duration-250"
+                      >
+                        {l.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
+              {col.title === 'Contacto' && (
+                <p className="font-sans text-[13px] text-muted mt-3.5 leading-relaxed">
+                  Cra 23 #30-47, Girón · Santander
+                </p>
+              )}
             </motion.div>
           ))}
 

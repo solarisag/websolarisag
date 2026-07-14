@@ -1,15 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-import { Analytics } from '@vercel/analytics/react'
-import App from './App.jsx'
+import { ViteReactSSG } from 'vite-react-ssg'
+import { routes } from './routes.jsx'
 import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-      <Analytics />
-    </BrowserRouter>
-  </React.StrictMode>
-)
+// Entry de vite-react-ssg: prerenderiza cada ruta a HTML estático en build
+// e hidrata en el cliente. Sustituye al antiguo ReactDOM.createRoot + BrowserRouter.
+export const createRoot = ViteReactSSG({ routes })

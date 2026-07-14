@@ -78,7 +78,7 @@ const CERTS = [
     ],
   },
   {
-    img:   '/images/etl.jpg',
+    img:   '/images/etl.webp',
     title: 'Certificación ETL',
     paras: [
       'Productos evaluados por laboratorios acreditados para garantizar seguridad eléctrica a nivel global.',

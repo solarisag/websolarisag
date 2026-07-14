@@ -1,33 +1,21 @@
 import { useParams, Link } from 'react-router-dom'
-import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import Navbar from '../components/ui/Navbar.jsx'
-import Footer from '../components/ui/Footer.jsx'
-import BackToTop from '../components/ui/BackToTop.jsx'
+import Seo from '../components/Seo.jsx'
+import NotFound from './NotFound.jsx'
+import { breadcrumbSchema } from '../data/schema.js'
 import { getProjectBySlug, projects } from '../data/projects.js'
+import { waLink } from '../data/site.js'
 import { ArrowLeftIcon, ArrowRightIcon, WhatsAppIcon } from '../components/ui/Icons.jsx'
 
-const WHATSAPP_TEMPLATE = (title) =>
-  `https://wa.me/573175696832?text=${encodeURIComponent(
-    `Hola, me interesa un proyecto similar a "${title}". ¿Podemos hablar?`
-  )}`
-
-function NotFound() {
+function Breadcrumbs({ title }) {
   return (
-    <main className="bg-bg text-ink min-h-screen">
-      <Navbar />
-      <section className="pt-40 pb-32 max-w-container mx-auto px-6 lg:px-10 text-center">
-        <span className="text-accent uppercase tracking-label text-xs font-semibold">404</span>
-        <h1 className="title text-display-md mt-4">
-          Proyecto <em>no encontrado.</em>
-        </h1>
-        <p className="text-muted mt-6 mb-10">El proyecto que buscas no existe o fue movido.</p>
-        <Link to="/#proyectos" className="btn-pill btn-pill-dark">
-          <ArrowLeftIcon size={14} /> Ver todos los casos
-        </Link>
-      </section>
-      <Footer />
-    </main>
+    <nav aria-label="Ruta de navegación" className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-label text-bg/60 mb-6">
+      <Link to="/" className="hover:text-accent transition-colors">Inicio</Link>
+      <span>/</span>
+      <Link to="/#proyectos" className="hover:text-accent transition-colors">Proyectos</Link>
+      <span>/</span>
+      <span className="text-bg/90">{title}</span>
+    </nav>
   )
 }
 
@@ -46,21 +34,6 @@ export default function ProjectDetail() {
   const { slug } = useParams()
   const project = getProjectBySlug(slug)
 
-  useEffect(() => {
-    if (!project) return
-    const prev = document.title
-    document.title = `${project.title} · Proyecto Solar ${project.type} | SolarISAG`
-    const meta = document.querySelector('meta[name="description"]')
-    const prevDesc = meta?.getAttribute('content')
-    if (meta) meta.setAttribute('content',
-      `${project.description.slice(0, 140)}… · Sistema de ${project.kwp} kWp en ${project.location}. SolarISAG — distribuidores autorizados Sylvania.`
-    )
-    return () => {
-      document.title = prev
-      if (meta && prevDesc) meta.setAttribute('content', prevDesc)
-    }
-  }, [project])
-
   if (!project) return <NotFound />
 
   const { title, type, location, kwp, year, coverImage, images, description, details } = project
@@ -69,31 +42,34 @@ export default function ProjectDetail() {
 
   return (
     <main className="bg-bg text-ink min-h-screen">
-      <Navbar />
-      <BackToTop />
+      <Seo
+        title={`${title} · Proyecto solar ${kwp} kWp en ${location} | SolarISAG`}
+        description={`Caso real: sistema solar fotovoltaico de ${kwp} kWp instalado en ${location}. Proyecto ${type.toLowerCase()} desarrollado por SolarISAG en Santander.`}
+        path={`/proyectos/${slug}`}
+        image={coverImage.startsWith('http') ? coverImage : `https://solarisag.com.co${coverImage}`}
+        type="article"
+        jsonLd={breadcrumbSchema([
+          { name: 'Inicio', path: '/' },
+          { name: 'Proyectos', path: '/#proyectos' },
+          { name: title, path: `/proyectos/${slug}` },
+        ])}
+      />
 
       {/* Hero */}
       <section className="relative h-[80vh] min-h-[520px] w-full overflow-hidden bg-ink">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-ink to-ink" />
         <img
           src={coverImage}
-          alt={title}
+          alt={`Proyecto solar ${title} — ${kwp} kWp en ${location}`}
           className="absolute inset-0 w-full h-full object-cover opacity-90"
-          fetchPriority="high"
+          fetchpriority="high"
           decoding="async"
-          onError={(e) => {
-            e.currentTarget.style.display = 'none'
-          }}
+          onError={(e) => { e.currentTarget.style.display = 'none' }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
 
         <div className="relative z-10 max-w-container mx-auto px-6 lg:px-10 h-full flex flex-col justify-end pb-20 pt-32">
-          <Link
-            to="/#proyectos"
-            className="inline-flex items-center gap-2 text-bg/70 hover:text-accent text-sm mb-8 transition-colors w-fit"
-          >
-            <ArrowLeftIcon size={14} /> Ver todos los casos
-          </Link>
+          <Breadcrumbs title={title} />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -169,11 +145,9 @@ export default function ProjectDetail() {
             >
               <img
                 src={src}
-                alt={`${title} — foto ${i + 1}`}
+                alt={`${title} — instalación de paneles solares, foto ${i + 1}`}
                 loading="lazy"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none'
-                }}
+                onError={(e) => { e.currentTarget.style.display = 'none' }}
                 className="w-full h-full object-cover"
               />
             </motion.div>
@@ -191,7 +165,7 @@ export default function ProjectDetail() {
           </h2>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href={WHATSAPP_TEMPLATE(title)}
+              href={waLink(`Hola, me interesa un proyecto similar a "${title}". ¿Podemos hablar?`)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-[#25D366] text-white px-7 py-3.5 rounded-full font-medium hover:bg-[#1ebe57] transition-colors text-[14px]"
@@ -200,7 +174,7 @@ export default function ProjectDetail() {
               Escribir por WhatsApp
             </a>
             <Link to="/#contacto" className="btn-pill btn-pill-ghost">
-              o llena el formulario
+              o solicita una evaluación
             </Link>
           </div>
         </div>
@@ -230,8 +204,6 @@ export default function ProjectDetail() {
           </Link>
         </section>
       )}
-
-      <Footer />
     </main>
   )
 }

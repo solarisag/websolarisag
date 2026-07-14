@@ -132,19 +132,31 @@ export default function Hero() {
       <EnergyParticleLayer />
 
       {/* Content */}
-      <div className="relative z-10 max-w-container mx-auto px-6 lg:px-10 pb-20 md:pb-24 pt-52">
+      <div className="relative z-10 max-w-container mx-auto px-6 lg:px-10 pb-20 md:pb-24 pt-36 md:pt-52">
+
+        {/* Geo signal */}
+        <motion.span
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-flex items-center gap-2 text-[11px] uppercase tracking-label text-accent mb-6"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+          Energía solar en Bucaramanga · Santander
+        </motion.span>
 
         {/* Headline */}
-        <h1 className="title text-white max-w-[700px] lg:max-w-[820px] text-[2.5rem] sm:text-[3.1rem] md:text-[3.9rem] lg:text-[4.7rem] xl:text-[5.2rem] mb-8">
+        <h1 className="title text-white max-w-[700px] lg:max-w-[880px] text-[2.3rem] sm:text-[3rem] md:text-[3.7rem] lg:text-[4.4rem] xl:text-[4.9rem] mb-7">
           {[
-            'Cada mes sin paneles',
-            <>es <em>dinero</em> que <em>no vuelve.</em></>,
+            'Tu factura de energía',
+            'sigue subiendo.',
+            <>Empieza a producir <em>la tuya.</em></>,
           ].map((line, i) => (
             <motion.span
               key={i}
-              initial={{ opacity: 0, y: 28, filter: 'blur(6px)' }}
+              initial={{ opacity: 0, y: 26, filter: 'blur(6px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              transition={{ duration: 0.85, delay: 0.25 + i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.8, delay: 0.28 + i * 0.13, ease: [0.22, 1, 0.36, 1] }}
               className="block"
             >
               {line}
@@ -156,26 +168,27 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.65, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col sm:flex-row sm:items-end gap-6 mb-14 md:mb-16"
         >
-          <p className="text-[15px] md:text-base text-white/65 leading-relaxed max-w-xs">
-            Instalamos paneles solares fotovoltaicos para hogares, empresas e industrias.
-            Ahorra hasta el <strong className="text-white font-bold">100% de tu factura de energía.</strong>
+          <p className="text-[15px] md:text-base text-white/70 leading-relaxed max-w-md">
+            Diseñamos, instalamos y legalizamos sistemas solares para hogares y empresas
+            en Bucaramanga y Santander. Analizamos tu consumo para construir una solución
+            que responda a tus necesidades.
           </p>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:ml-8 shrink-0">
-            <a href="#calculadora" className="btn-pill btn-pill-accent">
-              ¿Cuánto me ahorro?
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:ml-6 shrink-0">
+            <a href="#contacto" className="btn-pill btn-pill-accent">
+              Cotiza tu sistema solar
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </a>
             <a
               href="#proyectos"
-              className="inline-flex items-center gap-2 text-white/55 text-[14px] hover:text-white transition-colors group"
+              className="inline-flex items-center gap-2 text-white/60 text-[14px] hover:text-white transition-colors group"
             >
               <span className="border-b border-white/25 group-hover:border-white pb-0.5 transition-colors">
-                Ver proyectos
+                Ver proyectos realizados
               </span>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round"/>

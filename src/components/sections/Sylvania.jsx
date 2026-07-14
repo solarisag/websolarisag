@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const EASE = [0.22, 1, 0.36, 1]
 
@@ -51,9 +52,108 @@ const BENEFITS = [
   },
 ]
 
+const CERTS = [
+  {
+    img:   '/images/sello-retilap.png',
+    title: 'RETILAP',
+    paras: [
+      'Todos nuestros productos de iluminación cumplen con RETILAP 2024, garantizando nuestro compromiso con la seguridad y calidad de iluminación, cumpliendo los nuevos estándares y exigencias para una iluminación más eficiente, profesional y acorde a las nuevas tendencias y tecnologías vigentes.',
+      'Este cumplimiento asegura calidad en el desempeño lumínico, respaldo normativo y aprobación en proyectos que demandan eficiencia energética y conformidad regulatoria.',
+    ],
+  },
+  {
+    img:   '/images/sello-retie.png',
+    title: 'RETIE',
+    paras: [
+      'Nuestros productos solares cumplen con RETIE 2024, garantizando altos estándares de calidad, seguridad y eficiencia para todos tus proyectos.',
+      'Con el fin de garantizar la seguridad y prevenir riesgos, protegiendo a las personas, el medio ambiente y los bienes.',
+    ],
+  },
+  {
+    img:   '/images/ul.png',
+    title: 'UL (Underwriters Laboratories)',
+    paras: [
+      'Nuestros productos cumplen con pruebas internacionales de seguridad, calidad y rendimiento confiable.',
+      'UL (Underwriters Laboratories) es una empresa de consultoría que ofrece certificación relacionada con la seguridad, validación, pruebas, inspección, auditoría, asesoría y capacitación a fabricantes, minoristas, hacedores de políticas, reguladores, empresas de servicios y los consumidores. Cuenta con varias certificaciones que cubren la gran mayoría de sus productos profesionales de iluminación y canalización eléctrica.',
+    ],
+  },
+  {
+    img:   '/images/etl.jpg',
+    title: 'Certificación ETL',
+    paras: [
+      'Productos evaluados por laboratorios acreditados para garantizar seguridad eléctrica a nivel global.',
+      'La marca de certificación ETL de Intertek indica que el producto ha sido probado por un laboratorio independiente NRTL (Laboratorio de Pruebas Nacionalmente Reconocido) o acreditado por las autoridades locales, bajo los lineamientos técnicos de diferentes regiones en cuanto a seguridad eléctrica. Algunos productos de iluminación especializada cuentan con esta certificación.',
+    ],
+  },
+]
+
+function CertCard({ cert, index }) {
+  const [open, setOpen] = useState(true)
+  return (
+    <motion.div
+      variants={fadeUp}
+      className="rounded-2xl bg-white p-6 flex flex-col"
+      style={{ border: '1px solid rgba(0,0,0,0.07)', boxShadow: '0 4px 24px -8px rgba(0,0,0,0.06)' }}
+    >
+      {/* Badge / logo */}
+      <div className="h-20 flex items-center justify-start mb-4">
+        <img
+          src={cert.img}
+          alt={cert.title}
+          loading="lazy"
+          className="h-full w-auto max-w-[120px] object-contain"
+        />
+      </div>
+
+      {/* Header — toggles */}
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className="flex items-center justify-between gap-3 text-left w-full group"
+      >
+        <span className="flama-bold-italic text-ink text-[1.15rem] leading-snug">
+          {cert.title}
+        </span>
+        <motion.svg
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.3, ease: EASE }}
+          width="18" height="18" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+          className="text-black/40 shrink-0 group-hover:text-black/70 transition-colors"
+        >
+          <polyline points="6 9 12 15 18 9" />
+        </motion.svg>
+      </button>
+
+      {/* Body */}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="body"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: EASE }}
+            className="overflow-hidden"
+          >
+            <div className="pt-4 flex flex-col gap-3">
+              {cert.paras.map((p, i) => (
+                <p key={i} className="font-sans text-[13.5px] leading-relaxed text-black/55">
+                  {p}
+                </p>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  )
+}
+
 export default function Sylvania() {
   return (
-    <section className="relative overflow-hidden" style={{ background: '#F5F4F0' }}>
+    <section id="sylvania" className="relative overflow-hidden" style={{ background: '#F5F4F0' }}>
 
       {/* Subtle grid texture */}
       <div className="absolute inset-0 pointer-events-none" style={{
@@ -181,6 +281,37 @@ export default function Sylvania() {
           </motion.div>
 
         </div>
+
+        {/* ── Certifications ── */}
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="mt-20 pt-16"
+          style={{ borderTop: '1px solid rgba(0,0,0,0.08)' }}
+        >
+          <motion.div variants={fadeUp} className="flex items-center gap-4 mb-4">
+            <span className="inline-block text-[11px] uppercase tracking-label text-black/40">
+              Respaldo de nuestros productos
+            </span>
+            <div className="h-px w-12 bg-black/15" />
+          </motion.div>
+
+          <motion.h3
+            variants={fadeUp}
+            className="flama-bold-italic text-ink leading-[1.1] mb-10"
+            style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}
+          >
+            Certificaciones que <em style={{ color: '#007A3E' }}>garantizan</em> calidad
+          </motion.h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {CERTS.map((cert, i) => (
+              <CertCard key={cert.title} cert={cert} index={i} />
+            ))}
+          </div>
+        </motion.div>
 
         {/* ── Bottom strip ── */}
         <motion.div

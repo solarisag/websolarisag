@@ -7,6 +7,7 @@ const navLinks = [
   { href: '/#nosotros',    label: 'Nosotros'         },
   { href: '/#servicios',   label: 'Servicios'        },
   { href: '/#proyectos',   label: 'Proyectos'        },
+  { href: '/#sylvania',    label: 'Sylvania'         },
   // { href: '/#calculadora', label: 'Calcula tu ahorro'},
 ]
 
